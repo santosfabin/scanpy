@@ -1,5 +1,11 @@
 #se você está aqui parabéns e cuidado com o que você executa
 
+import re
+import json
+import threading
+import time
+import sys
+
 try:
     import nmap
 except ImportError:
@@ -13,9 +19,6 @@ except ImportError:
     import subprocess
     subprocess.call(["pip", "install", "colorama"])
     from colorama import Fore, Style
-
-import re
-import json
 
 
 args = ''
@@ -35,7 +38,7 @@ def banner():
     print("▀▀█ █   █▀█ █ ▀█ █▀▀ ▀█▀")
     print("▀▀▀ ▀▀▀ ▀ ▀ ▀  ▀ ▀    ▀")
     print("         █▄█▄█")
-    print("Documentação Scanpy: https://github.com/santosfabin/scanpy\n")
+    print("Documentação Scanpy: https://github.com/santosfabin/scanpy")
     print("Ajuda: https://github.com/santosfabin/scanpy/blob/main/README.md\n")
     
 
@@ -84,11 +87,11 @@ def formatLevel(level):
 
 def reconInfo():
     global target
-    print('Digite seu alvo: ')
+    print('Digite seu alvo')
     host_target = input('> ')
     target = host_target
     while True:
-        print(frufru_cor(1, '1 Básico') + '\t[Somente ping no algo]\n' + frufru_cor(2, '2 Leve') + '\t\t[Verificar portas conhecidas]\n' + frufru_cor(3, '3 Moderado') + '\t[Verificar versão]\n' + frufru_cor(4, '4 Rigoroso') + '\t[Verifica todas as portas]\n' + frufru_cor(5, '5 Impiedoso') + '\t[Verificação extras]\n' + frufru_cor(6, '6 Digite seu comando') + '\n')
+        print("\n" + frufru_cor(1, '1 Básico') + '\t[Somente ping no algo]\n' + frufru_cor(2, '2 Leve') + '\t\t[Verificar portas conhecidas]\n' + frufru_cor(3, '3 Moderado') + '\t[Verificar versão]\n' + frufru_cor(4, '4 Rigoroso') + '\t[Verifica todas as portas]\n' + frufru_cor(5, '5 Impiedoso') + '\t[Verificação extras]\n' + frufru_cor(6, '6 Digite seu comando') + '\n')
         global level
         print('Digite a força: ')
         level = input('> ')
@@ -142,11 +145,7 @@ def remove_ansi_colors(text):
     ansi_escape = re.compile(r'\x1B\[[0-?]*[ -/]*[@-~]')
     return ansi_escape.sub('', text)
 
-def start():
-    
-    result = save_file()
-    save_to_file = result[0]
-    file_name = result[1]
+def get_level():
     
     global nm, level
     print("\nEscaneando com nível de força: " + frufru_cor(level, f"{level}") + "...")
@@ -157,9 +156,7 @@ def start():
     except:
         print("error")
 
-    start_scan(save_to_file, file_name)
-
-def start_scan(save_to_file, file_name):
+def start(save_to_file, file_name):
     global level
     output = [] 
 
@@ -196,13 +193,47 @@ def start_scan(save_to_file, file_name):
         for linha in output:
             print(linha)
 
+def get_save_info():
+    result = save_file()
+    save_to_file = result[0]
+    file_name = result[1]
+    return save_to_file, file_name
+
+
+
+def loading_animation():
+    animation_chars = "/-\|"
+    time.sleep(0.1)
+    while not done_flag.is_set():
+        for char in animation_chars:
+            print(f"\rLoading{char}", end="")
+            time.sleep(0.1)
+
 
 def start_program():
     banner()
-    reconInfo()   
-    start()
-    print("Finalizado")
-    
+    reconInfo()
+    save_to_file, file_name = get_save_info()
 
+    global done_flag
+    done_flag = threading.Event()
+
+    loading_thread = threading.Thread(target=loading_animation)
+    loading_thread.start()
+
+    get_level()
+
+    done_flag.set()  # Sinaliza que a função get_level() terminou
+
+    loading_thread.join()  # Aguarda a thread de animação de loading terminar
+
+    sys.stdout.write("\r" + " " * len("Loading... ") + "\r")  # Limpa a linha do loading
+    sys.stdout.flush()
+
+    
+    print("\n" + frufru_cor(level, "Escaneamento completo") + "\n")
+
+    start(save_to_file, file_name)
+    print("Finalizado")
 
 start_program()
