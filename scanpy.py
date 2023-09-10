@@ -35,8 +35,8 @@ def banner():
     print("▀▀█ █   █▀█ █ ▀█ █▀▀ ▀█▀")
     print("▀▀▀ ▀▀▀ ▀ ▀ ▀  ▀ ▀    ▀")
     print("         █▄█▄█")
-    print("Documentação Scanpy: https://github.com/santosfabin/\n")
-    #print("Ajuda: https://github.com/santosfabin/\n")
+    print("Documentação Scanpy: https://github.com/santosfabin/scanpy\n")
+    print("Ajuda: https://github.com/santosfabin/scanpy/blob/main/README.md\n")
     
 
 
