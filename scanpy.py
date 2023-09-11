@@ -4,7 +4,8 @@ import re
 import json
 import threading
 import time
-import sys
+import os
+import platform
 
 try:
     import nmap
@@ -147,10 +148,6 @@ def remove_ansi_colors(text):
 
 def get_level():
     
-    global nm, level
-    print("\nEscaneando com nível de força: " + frufru_cor(level, f"{level}") + "...")
-    
-    print(f"Comando nmap usado: " + frufru_cor(level, f"nmap {args}"))
     try:
         nm.scan(target, arguments=args)
     except:
@@ -177,12 +174,12 @@ def start(save_to_file, file_name):
     mensagens = verify_services()
     try:
         if not mensagens:
-            output.append("Nenhuma aplicação detectada.")
+            output.append("\nNenhuma aplicação detectada\n")
         else:
             for mensagem in mensagens:
                 output.append(mensagem)
     except:
-        output.append("Nenhuma aplicação detectado")
+        output.append("\nErro desconhecido")
 
     if save_to_file:
         with open(file_name, "w") as arquivo:
@@ -200,24 +197,51 @@ def get_save_info():
     return save_to_file, file_name
 
 
+def clear():
+    sistema_operacional = platform.system()
+    
+    if sistema_operacional == "Windows":
+        os.system('cls')  # Para Windows
+    else:
+        os.system('clear')
 
 def loading_animation():
     time.sleep(0.1)
     while not done_flag.is_set():
-        for char in (".  ", ".. ", "...", "   "):
-            print(f"\rLoading{char}", end="")
-            time.sleep(0.3)
+        i = 0
+        for i in range(0, 20):
+            clear()
 
+            print("     ▄███████▄  S")
+            print("    █▀▀█████▀▀█ C")
+            print("    █▄  ███  ▄█ A")
+            print("    ▀████▄████▀ N")
+            print("      ▀ ▀ ▀ ▀")
+            if (i % 2 == 0):
+                print()
+            print("       █▄█▄█\n")
+            if (i % 2 != 0):
+                print()
+            time.sleep(0.3)
+        
+def fineshed_program():
+    clear()
+    print("\n" + frufru_cor(level, "Escaneamento completo") + "\n")
+    print("\nEscaner com nível de força: " + frufru_cor(level, f"{level}") + "...")
+    print(f"Comando nmap usado: " + frufru_cor(level, f"nmap {args}\n"))
 
 def start_program():
     banner()
+    
     reconInfo()
+    
     save_to_file, file_name = get_save_info()
 
     global done_flag
     done_flag = threading.Event()
 
     loading_thread = threading.Thread(target=loading_animation)
+    
     loading_thread.start()
 
     get_level()
@@ -225,14 +249,12 @@ def start_program():
     done_flag.set()  # Sinaliza que a função get_level() terminou
 
     loading_thread.join()  # Aguarda a thread de animação de loading terminar
-
-    sys.stdout.write("\r" + " " * len("Loading... ") + "\r")  # Limpa a linha do loading
-    sys.stdout.flush()
-
     
-    print("\n" + frufru_cor(level, "Escaneamento completo") + "\n")
-
+    fineshed_program()
+    
     start(save_to_file, file_name)
+    
     print("Finalizado")
 
 start_program()
+
