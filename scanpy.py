@@ -202,12 +202,13 @@ def get_save_info():
 
 
 def loading_animation():
-    animation_chars = "/-\|"
+    # animation_chars = "/-\|"
     time.sleep(0.1)
     while not done_flag.is_set():
-        for char in animation_chars:
+        # for char in animation_chars:
+        for char in (".  ", ".. ", "...", "   "):
             print(f"\rLoading{char}", end="")
-            time.sleep(0.1)
+            time.sleep(0.3)
 
 
 def start_program():
