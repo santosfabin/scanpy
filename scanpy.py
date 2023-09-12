@@ -1,4 +1,4 @@
-#se você está aqui parabéns e cuidado com o que você executa
+# se você está aqui parabéns e cuidado com o que você executa
 
 import re
 import json
@@ -30,15 +30,16 @@ tom_da_cor = ""
 nm = nmap.PortScanner()
 
 def banner():
-    print("       ▄███████▄")
-    print("      █▀▀█████▀▀█")
-    print("      █▄  ███  ▄█")
-    print("      ▀████▄████▀")
-    print("        ▀ ▀ ▀ ▀")
-    print("█▀▀ █▀▀ █▀█ █▄ █ █▀█ █ █")
-    print("▀▀█ █   █▀█ █ ▀█ █▀▀ ▀█▀")
-    print("▀▀▀ ▀▀▀ ▀ ▀ ▀  ▀ ▀    ▀")
-    print("         █▄█▄█")
+    print("\n")
+    print("         ▄███████▄")
+    print("        █▀▀█████▀▀█")
+    print("        █▄  ███  ▄█")
+    print("        ▀████▄████▀")
+    print("          ▀ ▀ ▀ ▀")
+    print("  █▀▀ █▀▀ █▀█ █▄ █ █▀█ █ █")
+    print("  ▀▀█ █   █▀█ █ ▀█ █▀▀ ▀█▀")
+    print("  ▀▀▀ ▀▀▀ ▀ ▀ ▀  ▀ ▀    ▀")
+    print("           █▄█▄█")
     print("Documentação Scanpy: https://github.com/santosfabin/scanpy")
     print("Ajuda: https://github.com/santosfabin/scanpy/blob/main/README.md\n")
     
@@ -108,8 +109,11 @@ def reconInfo():
 
 
 def verify_services():
-    with open('dados.json', 'r') as arquivo:
-        dados = json.load(arquivo)
+    try:
+        with open('dados.json', 'r') as arquivo:
+            dados = json.load(arquivo)
+    except:
+        print("Tente executar na pasta do programa")
     
     menssages = []
     
@@ -212,14 +216,15 @@ def loading_animation():
         for i in range(0, 20):
             clear()
 
-            print("     ▄███████▄  S")
-            print("    █▀▀█████▀▀█ C")
-            print("    █▄  ███  ▄█ A")
-            print("    ▀████▄████▀ N")
-            print("      ▀ ▀ ▀ ▀")
+            print("\n")
+            print("         ▄███████▄  S")
+            print("        █▀▀█████▀▀█ C")
+            print("        █▄  ███  ▄█ A")
+            print("        ▀████▄████▀ N")
+            print("          ▀ ▀ ▀ ▀")
             if (i % 2 == 0):
                 print()
-            print("       █▄█▄█\n")
+            print("           █▄█▄█\n")
             if (i % 2 != 0):
                 print()
             time.sleep(0.3)
