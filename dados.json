@@ -1,4 +1,5 @@
 {
     "Fireware": [1026, 1883, 4041, 8666, 27017],
-    "Teste": [1, 2, 3]
+    "Aplicação Web": [80, 443],
+    "Aplicação Web com MySQL": [80, 443, 3306]
 }
