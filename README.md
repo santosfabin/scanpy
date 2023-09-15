@@ -24,6 +24,13 @@ Para instalar as dependências, execute o seguinte comando:
 pip install python-nmap colorama
 ```
 
+ou
+
+```bash
+sudo apt install python3-nmap
+sudo apt install python3-colorama
+```
+
 Para instalar o scanpy clone este repositório ou faça o download dos arquivos para o seu computador.
 
 ```bash
