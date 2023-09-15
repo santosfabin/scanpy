@@ -93,7 +93,7 @@ def reconInfo():
     host_target = input('> ')
     target = host_target
     while True:
-        print("\n" + frufru_cor(1, '1 Básico') + '\t[Somente ping no algo]\n' + frufru_cor(2, '2 Leve') + '\t\t[Verificar portas conhecidas]\n' + frufru_cor(3, '3 Moderado') + '\t[Verificar versão]\n' + frufru_cor(4, '4 Rigoroso') + '\t[Verifica todas as portas]\n' + frufru_cor(5, '5 Impiedoso') + '\t[Verificação extras]\n' + frufru_cor(6, '6 Digite seu comando') + '\n')
+        print("\n" + frufru_cor(1, '1 Básico') + '\t[Somente ping no alvo]\n' + frufru_cor(2, '2 Leve') + '\t\t[Verificar portas conhecidas]\n' + frufru_cor(3, '3 Moderado') + '\t[Verificar versão]\n' + frufru_cor(4, '4 Rigoroso') + '\t[Verifica todas as portas]\n' + frufru_cor(5, '5 Impiedoso') + '\t[Verificação extras]\n' + frufru_cor(6, '6 Digite seu comando') + '\n')
         global level
         print('Digite a força: ')
         level = input('> ')
