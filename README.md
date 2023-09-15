@@ -62,6 +62,7 @@ python3 scanpy.py
     3. Salvar arquivo
         - C:\Users\You\Desktop\Folder\Arquivo.txt
         - /home/You/Desktop/Folder/Arquivo.txt
+        - ../Arquivo.txt
         - Arquivo.txt
 
 ## Configuração
