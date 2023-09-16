@@ -1,5 +1,5 @@
 {
-    "Fireware": [1026, 1883, 4041, 8666, 27017],
+    "Fiware": [1026, 1883, 4041, 8666, 27017],
     "Aplicação Web com MySQL http": [80, 3306],
     "Aplicação Web com MySQL HTTP": [8080, 3306],
     "Aplicação Web com MySQL https": [443, 3306],
