@@ -72,3 +72,7 @@ O programa possui um arquivo chamado `dados.json` que contém informações sobr
 ## Contribuições
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas, enviar solicitações de pull ou melhorar a documentação.
+
+## Vídeo de demonstração
+
+https://youtu.be/pZYApvJ8P50
